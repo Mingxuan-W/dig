@@ -15,6 +15,7 @@ from dig.data.dig_datamanager import DiGDataManagerConfig
 from dig.dig import DiGModelConfig
 
 from dig.dig_pipeline import DigPipelineConfig
+from garfield.garfield_gaussian_pipeline import GarfieldGaussianPipelineConfig
 """
 Swap out the network config to use OpenCLIP or CLIP here.
 """
@@ -25,7 +26,7 @@ dig_method = MethodSpecification(
         steps_per_save=2000,
         max_num_iterations=8000,
         mixed_precision=False,
-        pipeline=DigPipelineConfig(#use this for overlaying dino on top of a garfield trained model
+        pipeline=GarfieldGaussianPipelineConfig(#use this for overlaying dino on top of a garfield trained model
             datamanager=DiGDataManagerConfig(
                 dataparser=NerfstudioDataParserConfig(load_3D_points=True,train_split_fraction=0.99),
             ),

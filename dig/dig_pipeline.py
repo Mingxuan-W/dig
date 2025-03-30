@@ -107,36 +107,36 @@ class DiGPipeline(VanillaPipeline):
                 config.garfield_ckpt, test_mode="inference"
             )
             self.garfield_pipeline = [garfield_pipeline]
-        # if self.has_garfield:
-        #     self.state_stack = []
+        if self.has_garfield:
+            self.state_stack = []
 
-        #     self.colormap = generate_random_colors()
+            self.colormap = generate_random_colors()
 
-        #     self.viewer_control = ViewerControl()
+            self.viewer_control = ViewerControl()
 
-        #     self.a_segment_done_button = ViewerButtonGroup(name="Selection Type", cb_hook=self._update_interaction_method, default_value = 'Click',options=['Click','Cluster'])
+            self.a_segment_done_button = ViewerButtonGroup(name="Selection Type", cb_hook=self._update_interaction_method, default_value = 'Click',options=['Click','Cluster'])
             
 
-        #     self.click_gaussian = ViewerButton(name="Click", cb_hook=self._click_gaussian)
-        #     self.click_location = None
-        #     self.click_handle = None
+            self.click_gaussian = ViewerButton(name="Click", cb_hook=self._click_gaussian)
+            self.click_location = None
+            self.click_handle = None
 
-        #     self.crop_to_click = ViewerButton(name="Crop to Click", cb_hook=self._crop_to_click, disabled=True)
-        #     self.crop_to_group_level = ViewerSlider(name="Group Level", min_value=0, max_value=29, step=1, default_value=0, cb_hook=self._update_crop_vis, disabled=True)
-        #     self.crop_group_list = []
+            self.crop_to_click = ViewerButton(name="Crop to Click", cb_hook=self._crop_to_click, disabled=True)
+            self.crop_to_group_level = ViewerSlider(name="Group Level", min_value=0, max_value=29, step=1, default_value=0, cb_hook=self._update_crop_vis, disabled=True)
+            self.crop_group_list = []
 
-        #     self.cluster_scene_z = ViewerButton(name="Cluster Scene", cb_hook=self._cluster_scene, disabled=False, visible=False)
-        #     self.cluster_scene_scale = ViewerSlider(name="Cluster Scale", min_value=0.0, max_value=2.0, step=0.01, default_value=0.0, disabled=False, visible=False)
-        #     self.z_cluster_scene_shuffle_colors = ViewerButton(name="Reshuffle Cluster Colors", cb_hook=self._reshuffle_cluster_colors, disabled=False, visible=False)
-        #     self.cluster_labels = None
+            self.cluster_scene_z = ViewerButton(name="Cluster Scene", cb_hook=self._cluster_scene, disabled=False, visible=False)
+            self.cluster_scene_scale = ViewerSlider(name="Cluster Scale", min_value=0.0, max_value=2.0, step=0.01, default_value=0.0, disabled=False, visible=False)
+            self.z_cluster_scene_shuffle_colors = ViewerButton(name="Reshuffle Cluster Colors", cb_hook=self._reshuffle_cluster_colors, disabled=False, visible=False)
+            self.cluster_labels = None
 
-        #     self.d_reset_state = ViewerButton(name="Undo", cb_hook=self._reset_state, disabled=True)
+            self.d_reset_state = ViewerButton(name="Undo", cb_hook=self._reset_state, disabled=True)
 
-        #     dataset_name = config.datamanager.data.stem
-        #     save_state_dir = Path(f"outputs/{dataset_name}")
-        #     save_state_dir.mkdir(parents=True, exist_ok=True)
-        #     self.state_file = save_state_dir / "state.pt"
-        #     self.load_button = ViewerButton("Load State", cb_hook=lambda _:self.load_state(), visible=True)
+            dataset_name = config.datamanager.data.stem
+            save_state_dir = Path(f"outputs/{dataset_name}")
+            save_state_dir.mkdir(parents=True, exist_ok=True)
+            self.state_file = save_state_dir / "state.pt"
+            self.load_button = ViewerButton("Load State", cb_hook=lambda _:self.load_state(), visible=True)
     
     @property
     def has_garfield(self):
