@@ -32,7 +32,7 @@ class DinoDataloader(FeatureDataloader):
         device: torch.device,
         image_list: torch.Tensor,
         cache_path: str = None,
-        pca_dim: int = 96,
+        pca_dim: int = 64, #pod version
     ):
         assert "image_shape" in cfg
         self.extractor = ViTExtractor(self.dino_model_type, self.dino_stride)

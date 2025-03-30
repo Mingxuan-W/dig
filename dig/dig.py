@@ -26,7 +26,7 @@ import torch.nn.functional as F
 @dataclass
 class DiGModelConfig(SplatfactoModelConfig):
     _target: Type = field(default_factory=lambda: DiGModel)
-    dim: int = 96
+    dim: int = 64  #pod version
     """Output dimension of the feature rendering"""
     rasterize_mode: Literal["classic", "antialiased"] = "classic"
     dino_rescale_factor: int = 5

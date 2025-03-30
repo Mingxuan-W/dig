@@ -42,7 +42,11 @@ class DiGDataManager(FullImageDatamanager):
         cache_dir = f"outputs/{self.config.dataparser.data.name}"
         
         dino_cache_path = Path(osp.join(cache_dir, "dino.npy"))
-        images = [self.cached_train[i]["image"].permute(2, 0, 1)[None, ...] for i in range(len(self.train_dataset))]
+        # images = [self.cached_train[i]["image"].permute(2, 0, 1)[None, ...] for i in range(len(self.train_dataset))]
+        #deal with the rgba images
+        #need debug about this!!!!!!!!!!!  the background should be white
+        images = [self.cached_train[i]["image"][:,:,:3].permute(2, 0, 1)[None, ...] for i in range(len(self.train_dataset))]
+
         images = torch.cat(images)
         self.dino_dataloader = DinoDataloader(
             image_list = images,
